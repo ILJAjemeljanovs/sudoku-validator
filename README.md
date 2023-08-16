@@ -1,3 +1,40 @@
+# Solution description
+
+## Lack of time
+Unfortunately plans have tendency to change and i was forsed to do this assignment today(August 16th), instad of tomorrow, because of personal matters.
+That has resulted in somewhat hasty code, but i did my best.
+I have started it at 15:45 and at the moment of writing this file is 20:50,
+so it have taken me about 5 hours.
+
+## Goal
+
+Even though this solution looks overcomplicated for the task that was provided
+I had in mind that i need to show my skills to the Mitigate developers.
+This is the result of this thought:
+  * i need to make solution as Object Oriented as possible, even though scripted version could have resulted in a lot less code.
+  * i need to create solution using relevant Design Patterns(Composite, Adapter/Interpreter and Command where the natural choises).
+  * i need to create unit tests for new code, i'm about to add, to show at least basic TDD.
+  * i need to create easily expandable and maintainable code by using Single Responcibility Principle, DRY, Programm to Intreface Not Implementation
+
+## Changes to original code
+
+I have changed the way files are loaded in the Rakefile and the validator_spec.
+I have added a couple new fixtures to accomodate grid format check.
+I have added `pry` gem for easier debugging
+
+## Solution structure
+
+All starts in Validator, where we begin by using a Parser object that plays the role of Adapter/Interpreter.
+Parser first parses the string into a Puzzle object that we can communicate with.
+Puzzle object is a Composite object that is constructed by using Line, Column and Quadrant objects, that we will validate later on. Because All sudoku elements only contains 9 digits and play by the same rules - we create Abstract base object by the name Sudoku Element and make it parent to all elements.
+When constructing the object we populate it using Command pattern and setting up all the necessary info to the Puzzle object.
+Lastly we ask the puzzle object if it is valid, complete or invalid.
+
+Such approach will allow us to expand functionality later on if we for example will introduce new rules or elements to the puzzle (like Killer Sudoku for example) and at the same time we did not write any unneccessary code.
+
+## P.S.
+I somehow managed mess up the first git repository with the structured commits `>_<`, so this is a second one where everything is in a couple commits... Bad practice, but i dont't have any energy left to commit every single part one by one and fake the work progress.. Hope it doesnt affect the evaluation much.
+
 # Sudoku validator
 
 ## Description
